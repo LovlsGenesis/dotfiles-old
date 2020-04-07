@@ -1,3 +1,25 @@
+[user]
+	email = g.zeldine@hotmail.fr
+	name = Guillaume Zeldine
+
+[core]
+  pager = less -FRSX
+  editor = vim
+  excludesfile = ~/.gitignore_global
+
+[push]
+	default = current
+
+[pull]
+  default = current
+  rebase = true
+
+[branch]
+  autosetuprebase = always
+
+[commit]
+  template = ~/.gitmessage
+
 [color]
   branch = auto
   diff = auto
@@ -7,17 +29,36 @@
 
 [color "branch"]
   current = green
-  remote = yellow
+  remote = red
 
-[core]
-  pager = less -FRSX
-	editor = subl -n -w  >/dev/null 2>&1
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
+
+[color "diff"]
+  meta = yellow
+  old = red
+  new = green
 
 [alias]
-  co = checkout
-  st = status -sb
-  br = branch
   ci = commit
+  co = checkout
+  cm = checkout master
+  cb = checkout -b
+  st = status -sb
+  sf = show --name-only
+  lg = log --pretty=format:'%CRE%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30
+  incoming = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' ..@{u})
+  outgoing = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' @{u}..)
+  unstage = reset HEAD --
+  undo = checkout --
+  rollback = reset --soft HEAD~1
+  rollforward = commit -c ORIG_HEAD
+  conflicts = !git ls-files -u | cut -f 2 | sort -u
+  br = branch
+  # ci = commit
   fo = fetch origin
   d = !git --no-pager diff
   dt  = difftool
@@ -27,13 +68,13 @@
   sweep = !git branch --merged master | grep -v 'master$' | xargs git branch -d && git remote prune origin
 
   # http://www.jukie.net/bart/blog/pimping-out-git-log
-  lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
+  # lg = log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)%an%Creset %C(yellow)%d%Creset'
 
   # Serve local repo. http://coderwall.com/p/eybtga
   # Then other can access via `git clone git://#{YOUR_IP_ADDRESS}/
   serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 
-  m = checkout master
+  # m = checkout master
 
   # Removes a file from the index
   unstage = reset HEAD --
@@ -41,11 +82,7 @@
 [help]
   autocorrect = 1
 
-[push]
-	default = simple
+
 
 [branch "master"]
   mergeoptions = --no-edit
-[user]
-	email = g.zeldine@gmail.com
-	name = Guillaume Zeldine
