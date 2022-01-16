@@ -1,10 +1,10 @@
 [user]
 	email = g.zeldine@hotmail.fr
-	name = Guillaume Zeldine
+	name = guillaume zeldine
 
 [core]
   pager = less -FRSX
-	editor = '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w
+	editor = subl -n -w  >/dev/null 2>&1
   excludesfile = ~/.gitignore_global
 
 [push]
