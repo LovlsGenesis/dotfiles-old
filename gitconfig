@@ -43,6 +43,10 @@
   meta = yellow
   old = red
   new = green
+  
+[core]
+  pager = less -FRSX
+  editor = code --wait
 
 [alias]
   ci = commit
@@ -88,3 +92,6 @@
 
 [branch "master"]
   mergeoptions = --no-edit
+
+[pull]
+  rebase = false
