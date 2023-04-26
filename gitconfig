@@ -7,6 +7,9 @@
 	editor = subl -n -w  >/dev/null 2>&1
   excludesfile = ~/.gitignore_global
 
+[includeIf "gitdir:~/code/RaroLabs"]
+  path = .gitconfig-raro
+
 [push]
 	default = current
 
